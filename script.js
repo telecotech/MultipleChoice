@@ -28,9 +28,9 @@ var questions = [
   }
 ];
 
-
 document.getElementById('start-button').addEventListener("click", function() {
-document.getElementById('start-button').style.display = 'none';
+  document.getElementById('start-button-container').style.display = 'none';
+  document.getElementById('question-container').style.display = 'block';
   showQuestion();
 });
 
@@ -53,10 +53,9 @@ function showQuestion() {
   }
 }
 
-
 function handleAnswer() {
   const selectedOption = document.querySelector('input[type="radio"]:checked');
-  
+
   if (!selectedOption) {
     alert("Please select an answer.");
     return;
@@ -68,62 +67,50 @@ function handleAnswer() {
   currentQuestion++;
   if (currentQuestion === questions.length) {
     displayResult();
-  } 
-  else {
+  } else {
+    showQuestion();
+  }
+}
+
+function handleAnswer() {
+  const selectedOption = document.querySelector('input[type="radio"]:checked');
+
+  if (!selectedOption) {
+    alert("Please select an answer.");
+    return;
+  }
+  const answer = selectedOption.value;
+  if (answer === questions[currentQuestion].answer) {
+    score++;
+  }
+  currentQuestion++;
+  if (currentQuestion === questions.length) {
+    displayResult();
+  } else {
     showQuestion();
   }
 }
 
 function displayResult() {
+ 
+  var totalQuestions = questions.length;
+
+  
+  var percentageScore = Math.round((score / totalQuestions) * 100);
+
+ 
+  var urlParams = new URLSearchParams(window.location.search);
+  var name = urlParams.get('name');
+
+  
+  var resultMessage = "Congratulations " + name + "! You scored " + score + " out of " + totalQuestions + " (" + percentageScore + "%).";
+
+  
+  document.getElementById("result").innerHTML = resultMessage;
   document.getElementById('question-container').style.display = 'none';
-  document.getElementById('results').style.display = 'block';
-  document.getElementById('score').textContent = score;
-  document.getElementById('total').textContent = questions.length;
-
-  // Create a form to submit the name and score
-  var form = document.createElement('form');
-  form.addEventListener('submit', submitForm);
-  var nameLabel = document.createElement('label');
-  nameLabel.textContent = 'Name: ';
-  var nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.name = 'name';
-  var scoreInput = document.createElement('input');
-  scoreInput.type = 'hidden';
-  scoreInput.name = 'score';
-  scoreInput.value = score;
-  var submitButton = document.createElement('button');
-  submitButton.type = 'submit';
-  submitButton.textContent = 'Submit';
-
-  
-  form.appendChild(nameLabel);
-  form.appendChild(nameInput);
-  form.appendChild(scoreInput);
-  form.appendChild(submitButton);
-
-  
-  document.getElementById('results').appendChild(form);
-
-  document.getElementById('reset-button').addEventListener('click', resetQuiz);
+  document.getElementById('result-container').style.display = 'block';
 }
 
-function submitForm(event) {
-  event.preventDefault();
-  var name = event.target.elements.name.value;
-  var score = event.target.elements.score.value;
-  console.log(name, score);
-  
-}
 
-function resetQuiz() {
-  currentQuestion = 0;
-  score = 0;
-  document.getElementById('question-container').style.display = 'block';
-  document.getElementById('results').style.display = 'none';
-  showQuestion();
-}
-
-window.location.href = 'results.html?name=' + encodeURIComponent(name) + '&score=' + encodeURIComponent(score);
 
 
