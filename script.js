@@ -97,6 +97,7 @@ function displayResult() {
   submitButton.textContent = 'Submit';
   submitButton.addEventListener('click', function() {
     saveScore(initialsInput.value, score);
+  
   });
   
   var form = document.createElement('form');
@@ -106,25 +107,47 @@ function displayResult() {
   document.getElementById('score-form').appendChild(form);
 }
 
-fetch('JSON/scores.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // check if data is fetched correctly
+// 
+function saveScore(initials, score) {
+  fetch('scores.json')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data); // check if data is fetched correctly
 
-    // sort the scores in descending order
-    data.score.sort((a, b) => b.score - a.score);
+      // add the new score to the data
+      data.score.push({initials: initials, score: score});
 
-    // display the scores
-    var scoreList = document.getElementById('score-list');
-    if (data.scores) {
-      for (var i = 0; i < data.scores.length; i++) {
-        var scoreItem = document.createElement('li');
-        scoreItem.textContent = data.scores[i].initials + ' - ' + data.scores[i].score;
-        scoreList.appendChild(scoreItem);
-      }
-    }
-  })
-  .catch(error => console.error(error))
+      // sort the scores in descending order
+      data.score.sort((a, b) => b.score - a.score);
+
+      // save the data back to the file
+      fetch('scores.json', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    })
+    .catch(error => console.error(error));
+}
+
+var request = new XMLHttpRequest();
+request.open('GET', 'scores.json', true);
+request.onload = function() {
+  if (request.status >= 200 && request.status < 400) {
+    var data = JSON.parse(request.responseText);
+    console.log(data);
+  } else {
+    console.error('Failed to load scores.json');
+  }
+};
+request.send();
+
+
 
  
   
