@@ -81,94 +81,74 @@ function handleAnswer() {
 }
 
 
-function displayResult() {
- 
-  var totalQuestions = questions.length;
 
-  
-  var percentageScore = Math.round((score / totalQuestions) * 100);
+const fs = requires('fs');
 
- 
-  var urlParams = new URLSearchParams(window.location.search);
-  var name = urlParams.get('name');
 
-  
-  var resultMessage = "Congratulations " + name + "! You scored " + score + " out of " + totalQuestions + " (" + percentageScore + "%).";
+const scores = {};
 
-  
-  document.getElementById("result").innerHTML = resultMessage;
-  document.getElementById('question-container').style.display = 'none';
-  document.getElementById('result-container').style.display = 'block';
-}
+// convert the object to a JSON string
+const jsonString = JSON.stringify(scores);
 
-function displayResult() {
-  // Prompt the user for their initials
-  var initials = prompt("Please enter your initials:");
-
-  // Create a new object with the score and initials
-  var scoreObject = { score: score, initials: initials };
-
-  // Add the object to the saved scores
-  savedScores.push(scoreObject);
-  saveScores();
-
-  // Display the score and saved scores
-  var totalQuestions = questions.length;
-  var percentageScore = Math.round((score / totalQuestions) * 100);
-  var resultMessage = "Congratulations " + name + "! You scored " + score + " out of " + totalQuestions + " (" + percentageScore + "%).";
-  document.getElementById("result").innerHTML = resultMessage;
-  document.getElementById('question-container').style.display = 'none';
-  document.getElementById('result-container').style.display = 'block';
-
-  displayScores();
-}
-
-// function saveScore(name, score, percentageScore) {
-//   var scoreTable = document.getElementById("score-table");
-//   var newRow = scoreTable.insertRow(-1);
-//   var nameCell = newRow.insertCell(0);
-//   var scoreCell = newRow.insertCell(1);
-//   var percentageCell = newRow.insertCell(2);
-//   nameCell.innerHTML = name;
-//   scoreCell.innerHTML = score;
-//   percentageCell.innerHTML = percentageScore + "%";
-//   var html = scoreTable.outerHTML;
-//   var file = new File([html], "scores.html", {type: "text/html"});
-//   var url = URL.createObjectURL(file);
-//   var link = document.createElement("a");
-//   link.href = url;
-//   link.download = "scores.html";
-//   link.click();
-// }
-function saveScore(initials, score) {
-
-  var newScore = { initials: initials, score: score };
-
-  
-  scores.push(newScore);
-
- 
-  localStorage.setItem('scores', JSON.stringify(scores));
-
- 
-  window.location.href = 'scores.html';
-}
-
-function displayScores() {
-  var scoreTable = document.createElement('table');
-  var tableHeader = scoreTable.insertRow();
-  tableHeader.innerHTML = '<th>Initials</th><th>Score</th>';
-
-  for (var i = 0; i < savedScores.length; i++) {
-    var score = savedScores[i];
-    var row = scoreTable.insertRow();
-    row.innerHTML = '<td>' + score.initials + '</td><td>' + score.score + '</td>';
+// write the JSON string to a file
+fs.writeFile('JSON/scores.json', jsonString, err => {
+  if (err) {
+    console.log('Error writing file', err);
+  } else {
+    console.log('Successfully wrote file');
   }
+});
 
-  document.getElementById('score-container').innerHTML = '';
-  document.getElementById('score-container').appendChild(scoreTable);
-  document.getElementById('score-container').style.display = 'block';
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function displayScores(scores) {
+//     var scoreTable = document.createElement('table');
+//     var tableHeader = scoreTable.insertRow();
+//     tableHeader.innerHTML = '<th>Initials</th><th>Score</th>';
+  
+//     for (var i = 0; i < scores.length; i++) {
+//       var score = scores[i];
+//       var row = scoreTable.insertRow();
+//       row.innerHTML = '<td>' + score.initials + '</td><td>' + score.score + '</td>';
+//     }
+  
+//     document.getElementById('score-container').innerHTML = '';
+//     document.getElementById('score-container').appendChild(scoreTable);
+//     document.getElementById('score-container').style.display = 'block';
+//   }
+  
+//   var savedScores = JSON.parse(localStorage.getItem('scores.html')) || [];
+  
+//   savedScores.sort(function(a, b) {
+//     return b.score - a.score;
+//   });
+  
+
+
+
 
 
 

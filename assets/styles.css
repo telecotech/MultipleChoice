@@ -131,6 +131,33 @@ button:hover {
   margin: 20px 0;
 }
 
+#score-container {
+  display: none;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#score-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+#score-container th, #score-container td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+}
+
+#score-container th {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+
+
 @media (max-width: 1250px) {
   /* … */
 }
