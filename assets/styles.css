@@ -1,4 +1,4 @@
-/* CSS for quiz section */
+
 .quiz-container {
   display: none;
   width: 80%;
@@ -7,7 +7,8 @@
 }
 
 .question {
-  font-size: 1.5em;
+  font-size: 2em;
+  font-family: 'Gajraj One', cursive;
   margin: 1em 0;
 }
 
@@ -34,47 +35,42 @@
 }
 
 
+
 header {
   background-color:transparent;
   padding: 1em;
+  font-family: 'Gajraj One', cursive;
   text-align: center;
   margin-bottom: 1em;
 }
 
+main{
+  display:flex;
+  justify-content:center;
+}
 
 #start-button {
   display:flex;
   justify-content: center;
   font-size: 1.2em;
-  padding: 1em;
+  padding: .5em;
   margin: 2em;
-  border: none;
-  border-radius: 4px;
-  background-color: #4CAF50;
+  border: solid;
+  border-radius: 10px;
+  background-color: #d83717;
+  font-family: 'Gajraj One', cursive;
   color: #fff;
   cursor: pointer;
 }
 
 #start-button:hover {
-  background-color: #3e8e41;
-}
-
-
-.quiz-container-with-header {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.quiz-header {
-  background-color: #f2f2f2;
-  padding: 1em;
-  text-align: center;
-  margin-bottom: 1em;
+  background-color: #9bf39e;
 }
 
 #question-container {
   display: none;
   margin-top: 20px;
+  justify-content: center;
 }
 
 #question-container #questions {
@@ -99,6 +95,21 @@ header {
   margin-right: 5px;
 }
 
+button {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ddd;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
 #result-container {
   display: none;
   margin: 30px auto;
@@ -120,4 +131,15 @@ header {
   margin: 20px 0;
 }
 
+@media (max-width: 1250px) {
+  /* … */
+}
+
+@media (min-height: 680px), screen and (orientation: portrait) {
+  /* … */
+}
+
+@media (min-width: 30em) and (orientation: landscape) {
+  /* … */
+}
 

@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <title>Do you know JavaScript</title>
     <link rel="stylesheet" type="text/css" href="./assets/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <header><h1>How well do you know JavaScript</h1></header>
 	
 	<main>
-        <div id="name-input-container">
-            <form id="name-form">
-                <label for="name">Please enter your name:</label>
-                <input type="text" id="name" name="name" required>
-            </form>
-        </div>
-
-		<div id="question-container">
+        <div id="question-container">
 			<div id="questions"></div>
 			<div id="choices"></div>
 		</div>
@@ -27,9 +23,20 @@
             <div id="result"></div>
         </div>
 	</main>
+
+    <div id="save-score-container" style="display: none;">
+        <h2>Save your score</h2>
+        <form id="save-score-form">
+          <label for="initials">Enter your initials:</label>
+          <input type="text" id="initials" name="initials" maxlength="3" required>
+          <input type="submit" value="Save">
+        </form>
+      </div>
     
     <script src="script.js"></script>
   </body>
 </html>
+
+
 
 
