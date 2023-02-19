@@ -2,29 +2,29 @@ var currentQuestion = 0;
 var score = 0;
 var questions = [
   {
-    question: "What is the capital of France?",
-    choices: ["Paris", "London", "New York"],
-    answer: "Paris"
+    question: "Inside which HTML element do we put the JavaScript?",
+    choices: ["js", "script", "javascript","None of the above"],
+    answer: "script"
   },
   {
-    question: "What is the largest country in the world?",
-    choices: ["United States", "Russia", "China"],
-    answer: "Russia"
+    question: "Which of the following keywords is used to define a variable in Javascript?",
+    choices: ["var", "let", "Both A and B", "None of the above"],
+    answer: "Both A and B"
   },
   {
-    question: "What is the currency of Japan?",
-    choices: ["Yuan", "Yen", "Won"],
-    answer: "Yen"
+    question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
+    choices: ["Ignores the statement", "Throws an error", "Gives a warning","None of the above"],
+    answer: "Ignores the statement"
   },
   {
-    question: "What is the highest mountain in the world?",
-    choices: ["Mount Everest", "K2", "Kangchenjunga"],
-    answer: "Mount Everest"
+    question: "Which of the following methods can be used to display data in some form using Javascript?",
+    choices: ["document.write()", "console.log()", "window.alert()","All of the above"],
+    answer: "All of the above"
   },
   {
-    question: "What is the smallest country in the world?",
-    choices: ["Monaco", "Vatican City", "Nauru"],
-    answer: "Vatican City"
+    question: " How can a datatype be declared to be a constant type? ",
+    choices: ["const", "var", "let", "constant"],
+    answer: "const"
   }
 ];
 
