@@ -1,4 +1,9 @@
+.background{
+  background-image: url(/assets/images/background.jpg);
+  background-size:auto;
+  background-repeat: no-repeat;
 
+}
 .quiz-container {
   display: none;
   width: 80%;
@@ -33,6 +38,7 @@
 #score {
   font-weight: bold;
 }
+
 
 
 

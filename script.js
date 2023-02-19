@@ -135,17 +135,6 @@ function saveScore(initials, score) {
     .catch(error => console.error(error));
 }
 
-var request = new XMLHttpRequest();
-request.open('GET', 'scores.json', true);
-request.onload = function() {
-  if (request.status >= 200 && request.status < 400) {
-    var data = JSON.parse(request.responseText);
-    console.log(data);
-  } else {
-    console.error('Failed to load scores.json');
-  }
-};
-request.send();
 
 
 
