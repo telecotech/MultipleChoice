@@ -74,79 +74,60 @@ function handleAnswer() {
   currentQuestion++;
 
   if (currentQuestion === questions.length) {
-    displayResult();
+    displayResult([{initials: "AB", score: score}]);
   } else {
     showQuestion();
   }
 }
 
-
-
-const fs = requires('fs');
-
-
-const scores = {};
-
-// convert the object to a JSON string
-const jsonString = JSON.stringify(scores);
-
-// write the JSON string to a file
-fs.writeFile('JSON/scores.json', jsonString, err => {
-  if (err) {
-    console.log('Error writing file', err);
-  } else {
-    console.log('Successfully wrote file');
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function displayScores(scores) {
-//     var scoreTable = document.createElement('table');
-//     var tableHeader = scoreTable.insertRow();
-//     tableHeader.innerHTML = '<th>Initials</th><th>Score</th>';
+function displayResult() {
+  document.getElementById('question-container').style.display = 'none';
+  document.getElementById('save-score-container').style.display = 'block';
   
-//     for (var i = 0; i < scores.length; i++) {
-//       var score = scores[i];
-//       var row = scoreTable.insertRow();
-//       row.innerHTML = '<td>' + score.initials + '</td><td>' + score.score + '</td>';
-//     }
+  var resultText = "You scored " + score + " out of " + questions.length;
+  document.getElementById('result').textContent = resultText;
   
-//     document.getElementById('score-container').innerHTML = '';
-//     document.getElementById('score-container').appendChild(scoreTable);
-//     document.getElementById('score-container').style.display = 'block';
-//   }
+  var initialsInput = document.createElement('input');
+  initialsInput.type = 'text';
+  initialsInput.id = 'initials';
+  initialsInput.placeholder = 'Enter your initials';
   
-//   var savedScores = JSON.parse(localStorage.getItem('scores.html')) || [];
+  var submitButton = document.createElement('button');
+  submitButton.type = 'button';
+  submitButton.textContent = 'Submit';
+  submitButton.addEventListener('click', function() {
+    saveScore(initialsInput.value, score);
+  });
   
-//   savedScores.sort(function(a, b) {
-//     return b.score - a.score;
-//   });
+  var form = document.createElement('form');
+  form.appendChild(initialsInput);
+  form.appendChild(submitButton);
   
+  document.getElementById('score-form').appendChild(form);
+}
 
+fetch('JSON/scores.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // check if data is fetched correctly
+
+    // sort the scores in descending order
+    data.score.sort((a, b) => b.score - a.score);
+
+    // display the scores
+    var scoreList = document.getElementById('score-list');
+    if (data.scores) {
+      for (var i = 0; i < data.scores.length; i++) {
+        var scoreItem = document.createElement('li');
+        scoreItem.textContent = data.scores[i].initials + ' - ' + data.scores[i].score;
+        scoreList.appendChild(scoreItem);
+      }
+    }
+  })
+  .catch(error => console.error(error))
+
+ 
+  
 
 
 
