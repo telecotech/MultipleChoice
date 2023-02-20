@@ -55,6 +55,11 @@ main{
   justify-content:center;
 }
 
+#timer-container {
+  text-align: right;
+}
+
+
 #start-button {
   display:flex;
   justify-content: center;
@@ -160,6 +165,22 @@ button:hover {
 #score-container th {
   background-color: #eee;
   font-weight: bold;
+}
+#save-score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 20%;
+  font-family: 'Gajraj One', cursive;
+  padding: 20px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #ccc;
+  font-size: 1.2em;
+  max-width: 400px;
 }
 
 
